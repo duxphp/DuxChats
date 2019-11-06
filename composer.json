@@ -1,0 +1,27 @@
+{
+    "name": "duxphp/duxchats",
+    "description": "DuxPHP Chat",
+    "authors": [
+        {
+            "name": "DuxPHP",
+            "email": "admin@duxphp.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "dux\\": "src/"
+        }
+    },
+    "keywords": [
+        "duxphp",
+        "OSS",
+        "COS",
+        "Qiniu",
+        "Upyun"
+    ],
+    "homepage": "http://duxphp.com/",
+    "license": "Apache-2.0"
+}
