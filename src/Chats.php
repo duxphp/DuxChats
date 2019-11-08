@@ -12,7 +12,7 @@ class Chats {
 
 
     protected $config = [
-        'host' => '',
+        'host' => '0.0.0.0',
         'port' => 9052
     ];
 
@@ -61,9 +61,10 @@ class Chats {
 
     /**
      * 添加事件
-     * @param array $events
+     * @param array|null $events
+     * @param null|string $eventName
      */
-    public function addEvents(array $events = null) : void {
+    public function addEvents(array $events = null,?string $eventName = null) : void {
 
         if(is_null($events))
             $events = $this->events;
@@ -75,12 +76,15 @@ class Chats {
 
         foreach ($events as $event => $callback){
 
-            if(is_array($callback) && !is_object($callback[0])){
-                $this->addEvents($callback);
+            $eventKey = is_null($eventName) ? $event : $eventName;
+
+            //拦截 [$this,'事件名'] 等数组
+            if(is_array($callback) && !is_string($callback[1])){
+                $this->addEvents($callback,$eventKey);
                 continue;
             }
 
-            $eventStr = constant('\dux\swoole\EventRegister::'. $event);
+            $eventStr = constant('\dux\swoole\EventRegister::'. $eventKey);
             if(empty($eventStr)){
                 continue;
             }
