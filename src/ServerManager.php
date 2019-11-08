@@ -24,10 +24,12 @@ class ServerManager {
 
     public function init($config){
 
-        if(!isset($config['setting']))
-            $config['setting'] = [];
+        $config = array_merge([
+            'setting'   => [],
+            'args'      => []
+        ],$config);
 
-        $this->swooleServer($config['type'],$config['host'],$config['port'],$config['setting']);
+        $this->swooleServer($config['type'],$config['host'],$config['port'],$config['setting'],...$config['args']);
     }
 
     public function getSwooleServer(){
