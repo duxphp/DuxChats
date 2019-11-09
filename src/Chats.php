@@ -25,7 +25,7 @@ class Chats {
     public function __construct(array $config = []) {
 
         if(empty($config))
-            $config = \dux\Config::get('dux.use_socket_data');
+            $config = \dux\Config::get('dux.socket_data');
 
         $this->config = array_merge($this->config, $config);
         $this->init();
